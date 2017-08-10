@@ -4,7 +4,7 @@ sudo yum update -y
 sudo yum install puppet-server -y
 # COLLECT HOST DETAILS
 internalname="$(echo $HOSTNAME | awk -F'.' '{print $1}')"
-fqdn="hostname -f"
+fqdn=`hostname -f`
 # ADDING HOST SPECIFIC DETAILS TO PUPPET CONFIG
 echo "dns_alt_names = $internalname,$fqdn" >> /etc/puppet/puppet.conf
 echo "certname = $internalname" >> /etc/puppet/puppet.conf
