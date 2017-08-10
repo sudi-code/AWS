@@ -1,5 +1,5 @@
 #!/bin/bash
-# SCRIPT TO INSTALL PUPPET MASTER ON RHEL7
+# SCRIPT TO INSTALL PUPPET SERVER ON RHEL7
 # Adding puppetrepo and installing the package
 sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
 sudo yum update -y
@@ -11,11 +11,12 @@ hostname=$HOSTNAME
 echo "dns_alt_names = $internalname,$hostname" >> /etc/puppet/puppet.conf
 echo "certname = $internalname" >> /etc/puppet/puppet.conf
 # Start the service and check status
-sudo systemctl start puppetmaster
-sudo systemctl status puppetmaster
+sudo systemctl start puppetserver
+sudo systemctl status puppetserver
 # Ensure puppetmaster service
-puppet resource service puppetmaster ensure=running
+puppet resource service puppetserver ensure=running
 # Generate CA CERTS
 puppet cert list --all
 #Install puppet modules for creation of new nodes
 puppet module install puppetlabs-aws
+puppet gems install aws-sdk-core
