@@ -3,14 +3,13 @@
 sudo yum update -y
 sudo yum install puppet-server -y
 # COLLECT HOST DETAILS
+sudo -i
 internalname="$(echo $HOSTNAME | awk -F'.' '{print $1}')"
 fqdn=`hostname -f`
 # ADDING HOST SPECIFIC DETAILS TO PUPPET CONFIG
 echo "dns_alt_names = $internalname,$fqdn" >> /etc/puppet/puppet.conf
 echo "certname = $internalname" >> /etc/puppet/puppet.conf
-# START PUPPET MASTER
-sudo systemctl start puppetmaster
-sudo systemctl status puppetmaster
+logout
 # ENSURE PUPPET MASTER IS RUNNING
 sudo puppet resource service puppetmaster ensure=running
 # GENERATE CA CERTS
