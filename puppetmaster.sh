@@ -3,7 +3,7 @@
 # Adding puppetrepo and installing the package
 sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
 sudo yum update -y
-sudo yum install puppet-server -y
+sudo yum install puppetserver -y
 # Collecting ec2-instance details#
 internalname="$(echo $HOSTNAME | awk -F'.' '{print $1}')"
 hostname=$HOSTNAME
