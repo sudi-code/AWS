@@ -1,4 +1,5 @@
 #!/bin/bash
+# SCRIPT TO INSTALL PUPPET MASTER ON RHEL7
 # Adding puppetrepo and installing the package
 sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
 sudo yum update -y
